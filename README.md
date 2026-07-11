@@ -1,5 +1,6 @@
-Hey dudes. W*lcome [2]  > [python utils folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
-
+Hey dudes. W*lcome [2] > 
+[python utils folder](https://github.com/AleksandrovskyV/python/tree/main/util)
+ <br>
 
 #Нужно было собрать gif из секвенции больше 500 кадров
 ### [> pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)  
