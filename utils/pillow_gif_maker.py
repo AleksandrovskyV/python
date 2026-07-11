@@ -5,14 +5,12 @@ import os
 from PIL import Image
 
 source_folder = "./cursors_seq"
-gif_name = "cursors.gif" 
-target_color = 64
-target_ms = 33
-# target_ms
-# 40 мс = 25 FPS
-# 33 мc = 30 FPS
+gif_name = "cursors.gif"
 
-loop_count = 0
+target_color = 64
+target_ms = 33 
+# 40 ms = 25 FPS
+# 33 ms = 30 FPS
 
 print(f"Collect png images...")
 
@@ -45,7 +43,7 @@ frames[0].save(
     save_all=True,
     append_images=frames[1:],
     duration=target_ms,
-    loop=loop_count,
+    loop=0,
     optimize=False,
 )
 
