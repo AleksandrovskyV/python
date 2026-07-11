@@ -1,4 +1,4 @@
-Hey dudes. W*lcome [2] > [python utils folder](https://github.com/AleksandrovskyV/python/tree/main/util)
+Hey dudes. W*lcome [2] > [python utils folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
  <br>
 
 #Нужно было собрать gif из секвенции больше 500 кадров<br>
