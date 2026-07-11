@@ -1,5 +1,4 @@
-# python utils
-Hey dudes. W*lcome [2]  > [utils folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
+Hey dudes. W*lcome [2]  > [python utils folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
 
 
 ## [pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)  
