@@ -4,16 +4,15 @@
 import os
 from PIL import Image
 
-source_folder = "./cursors"
-gif_name = "animation_64_colors.gif" 
-
+source_folder = "./cursors_seq"
+gif_name = "cursors.gif" 
+target_color = 64
+target_ms = 33
 # target_ms
 # 40 мс = 25 FPS
 # 33 мc = 30 FPS
 
-target_ms = 33
 loop_count = 0
-target_color = 64 
 
 print(f"Collect png images...")
 
