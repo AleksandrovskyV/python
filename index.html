@@ -19,8 +19,6 @@
 <meta name="twitter:image" content="https://vsky.space/content/cover/python.jpg">
 <meta name="twitter:site" content="@AleksandrovskyV">
 
-<link rel="icon" href="/content/fav/python.png" type="image/png">
-<link rel="apple-touch-icon" sizes="180x180" href="/content/fav/python.png">
 <link rel="canonical" href="http://vsky.space/python/">
 
 <style>
@@ -34,6 +32,18 @@ background: black;
 justify-content: center;
 align-items: center; 
 font-family: sans-serif;
+}
+
+.sMainBlock {
+width: 50%; 
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-start;
+z-index: 9998;
+margin-top: 20vh;
+margin-bottom: 5vh;
 }
 
 p{
@@ -51,20 +61,35 @@ color: white;
 .link{ color: #2f7ee3; }
 .link:hover { color: #006bf3; }
 
-.sMainBlock {
-width: 50%; 
-height: 100%;
+.icon {
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
-align-items: flex-start;
-z-index: 9998;
-margin-top: 20vh;
-margin-bottom: 5vh;
+align-items: center;
+justify-content: center;
+width: 100px;
+height: 100px;
 }
 
-.textIntro {
+.icon img{
+width: 64px;
+height: 64px;
+}
+
+.line {
+border-left: 2px solid #ccc; 
+height: 100px;
+margin-left: 1vh;
+}
+
+.introBlock {
 margin-top: 10vh;
+display: flex;
+flex-direction: row;
+}
+
+.aboutRow {
+margin-left: 2vh;
+margin-top: 0.7vh;
 }
 
 .rowElement {
@@ -77,19 +102,29 @@ width: 90%;
 margin-top: 5vh;
 }
 }
-
 </style>
 
 </head><body>
 
 <div id="mainBlock" class="sMainBlock">
     
-    <div class="textIntro" > 
-        <h1><a >Python Utils</a></h1>
-        <p>Hey dudes. W*lcome [2]
-            <a class="link" href="https://github.com/AleksandrovskyV/python/tree/main/utils">
-            > python utils folder</a>
-        </p>
+    <div class="introBlock" > 
+
+        <div class="icon">
+            <img src="https://vsky.space/content/fav/python.png">
+        </div>
+
+        <div class="line"></div>
+
+        <div class="aboutRow" >
+            <h1><a >Python Utils</a></h1>
+            <p>Hey dudes. W*lcome [2]
+                <a class="link" href="https://github.com/AleksandrovskyV/python/tree/main/utils">
+                > python utils folder</a>
+            </p>
+
+        </div>
+
     </div>
 
     <div class="rowElement">
@@ -100,10 +135,20 @@ margin-top: 5vh;
         </h2>
     </div>
 
-    <div class="textIntro" > 
-        <h1><a >Pyside6 Apps</a></h1>
-        <p>Hey dudes. W*lcome [3]
-        </p>
+    <div class="introBlock" >
+
+        <div class="icon">
+            <img src="https://vsky.space/mouse_states_recorder/assets/base_icon.png">
+        </div>
+
+        <div class="line"></div>
+
+        <div class="aboutRow" >
+
+            <h1><a >Pyside6 Apps</a></h1>
+            <p>Hey dudes. W*lcome [3]
+            </p>
+        </div>
     </div>
 
     <div class="rowElement">
