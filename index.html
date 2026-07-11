@@ -24,15 +24,66 @@
 <link rel="canonical" href="http://vsky.space/python/">
 
 <style>
+* {margin: 0; padding: 0;box-sizing: border-box;}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: black;
+  justify-content: center;
+  align-items: center; 
+  font-family: sans-serif;
+}
+
+p{
+color: #a9a9a9;
+display: block;
+margin-block-start: 1em;
+margin-block-end: 1em;
+font-size: 17px;
+}
+
+h1, h2{
+color: white;
+}
+
+.link{ color: #2f7ee3; }
+.link:hover { color: #006bf3; }
+
+.sMainBlock {
+width: 50%; 
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-start;
+z-index: 9998;
+margin-top: 20%;
+}
+
+.rowElement {
+margin-top: 5%;
+}
+
 </style>
 
 </head><body>
 
-<h1><a >Python Utils</a></h1>
-<p>Hey dudes. W*lcome [2]  &gt; <a href="https://github.com/AleksandrovskyV/python/tree/main/utils">python utils folder</a></p>
 
-<h2 id="pillow-gif-maker"><a href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow gif maker</a><a href="https://vsky.space/python/#pillow-gif-maker" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
-<p>#Нужно было собрать gif из секвенции больше 500 кадров</p>
+<div id="mainBlock" class="sMainBlock">
+	
+	<div id="textIntro" > 
+		<h1><a >Python Utils</a></h1>
+		<p>Hey dudes. W*lcome [2] > 
+			<a class="link" href="https://github.com/AleksandrovskyV/python/tree/main/utils">python utils folder</a>
+		</p>
+	</div>
 
+	<div class="rowElement">
+		<h2><a class="link" href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow gif maker</a> </h2>
+		<p># Нужно было собрать .gif по секвенции больше 500 кадров</p>
+	</div>
+</div>
 
 </body></html>
