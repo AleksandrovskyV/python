@@ -7,7 +7,7 @@ Hey dudes. W*lcome [2] > [python utils folder](https://github.com/Aleksandrovsky
 #Нужно было переименовать секвенцию A_[####] > B_[####]<br>
 [> batch_renamer](https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py)
 
-Нужен был единый интерфейс запуска этих скриптов <br>
+#Нужно было добавить единый интерфейс запуска скриптов<br>
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
 
 <br>
