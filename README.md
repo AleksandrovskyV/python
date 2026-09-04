@@ -10,6 +10,7 @@ Hey dudes. W*lcome [2] > [python utils folder](https://github.com/Aleksandrovsky
 Нужен был единый интерфейс запуска этих скриптов <br>
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
 
+
 Нужно было добавить интерфейс самим скриптам,<br>
 сохранив их работу пкм>python<br>
 > добавлен modules/tinker.py
