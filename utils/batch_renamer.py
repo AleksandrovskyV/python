@@ -1,60 +1,115 @@
-import os
-import re
+# batch_renamer.py
 
-TARGET_DIR = "./mouth_top" 
-FINAL_NAME = "mouth_top" 
-TOKEN_DELIMITER = "_" 
-FILE_EXTENSION = ".png"
+# i need rename A_#### > B_#### 
+# without Adobe Bridge
 
 
-def batch_rename():
+TOOL_NAME = "Batch Renamer"
+
+CUST_FILEPATH  =  "./SEQ/A_00.png"
+CUST_NEW_NAME =  "B"
+CUST_DELIMITER  = "_"
+
+import os, sys, re
+
+
+# 2. Config for AutoGUI (based on tinker)
+GUI_CONFIGS = [
+    {"id": "filepath", "label": "Sequence:", "type": "file", "default": ""},
+    {"id": "new_name", "label": "New Name:", "type": "text", "default": ""},
+    {"id": "delimiter", "label": "Delimiter:", "type": "text", "default": "_"}
+]
+
+
+def batch_rename(filepath, new_name, delimiter="_", progress_callback=None):
+    if not filepath or not os.path.exists(filepath):
+        raise ValueError("Please select a valid file first.")
+
+    folder = os.path.dirname(filepath)
+    selected_filename = os.path.basename(filepath)
+    
+    selected_name_no_ext, extension = os.path.splitext(selected_filename)
+
+    match_digits = re.search(r"(\d+)\s*$", selected_name_no_ext)
+    if not match_digits:
+        raise ValueError("The selected file is not part of a sequence (no digits at the end of the name).")
+    
+    digits_part = match_digits.group(1)
+    base_prefix = selected_name_no_ext[:-len(digits_part)] 
+
     files_to_process = []
-
-    for filename in os.listdir(TARGET_DIR):
-        if filename.endswith(FILE_EXTENSION):
-
-            name_without_ext, _ = os.path.splitext(filename)
-            tokens = name_without_ext.split(TOKEN_DELIMITER)
-
-            if tokens:
-                last_token = tokens[-1]  # Берем последний токен
-
-                # Извлекаем из последнего токена только цифры
-                match = re.search(r"\d+", last_token)
-                if match:
-                    number_val = int(match.group())
-                    files_to_process.append(
-                        {
-                            "old_filename": filename,
-                            "sort_number": number_val,
-                        }
-                    )
-
-    # 2. Сортируем файлы по найденному числу
-    files_to_process.sort(key=lambda x: x["sort_number"])
+    for f_name in os.listdir(folder):
+        if f_name.endswith(extension):
+            name_no_ext, _ = os.path.splitext(f_name)
+            
+            if name_no_ext.startswith(base_prefix):
+                end_digits = re.search(r"(\d+)\s*$", name_no_ext)
+                if end_digits:
+                    files_to_process.append({
+                        "old_filename": f_name,
+                        "sort_number": int(end_digits.group(1))
+                    })
 
     if not files_to_process:
-        print("No files to rename")
-        return
+        raise ValueError(f"No sequence files found matching this pattern.")
 
-    # Определяем нужную длину паддинга (нулей), чтобы имена были красивыми
-    # Например, если файлов 15, сделает 01, 02... Если 105, то 001, 002...
-    max_index = len(files_to_process) - 1
-    padding = max(2, len(str(max_index)))
+    files_to_process.sort(key=lambda x: x["sort_number"])
+    padding = max(2, len(str(len(files_to_process) - 1)) + 1)
 
-    print(f"Search Files: {len(files_to_process)}\n")
+    if not new_name.strip():
+        final_base = base_prefix.rstrip(delimiter)
+    else:
+        final_base = new_name.strip()
+
+
+    first_file = files_to_process[0]["old_filename"]
+    first_new = f"{final_base}{delimiter}{str(0).zfill(padding)}{extension}"
+    print(f"[Sequence Detected] Total files: {len(files_to_process)}")
+    print(f"[Preview] Transform: {first_file}  --->  {first_new}")
+
 
     for index, file_info in enumerate(files_to_process):
-        old_path = os.path.join(TARGET_DIR, file_info["old_filename"])
-
+        old_path = os.path.join(folder, file_info["old_filename"])
         formatted_index = str(index).zfill(padding)
-        new_filename = f"{FINAL_NAME}_{formatted_index}{FILE_EXTENSION}"
-        new_path = os.path.join(TARGET_DIR, new_filename)
-
+        new_filename = f"{final_base}{delimiter}{formatted_index}{extension}"
+        new_path = os.path.join(folder, new_filename)
 
         os.rename(old_path, new_path)
-        print(f"Renamed: {file_info['old_filename']} -> {new_filename}")
 
+        if progress_callback:
+            progress_callback(file_info["old_filename"], new_filename, index + 1, len(files_to_process))
+
+    return len(files_to_process)
+
+
+
+
+# 4. Блок запуска с поддержкой хака путей и заглушки MagicMock
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from modules.tinker import AutoGUI
+except ImportError:
+    from unittest.mock import MagicMock
+    print(f"[!] {TOOL_NAME} not found AutoGUI. Running headless...")
+    AutoGUI = MagicMock()
 
 if __name__ == "__main__":
-    batch_rename()
+    app = AutoGUI(TOOL_NAME, GUI_CONFIGS, batch_rename) 
+    app.run()
+
+    if 'MagicMock' in str(type(app)):
+        print(f"\n[{TOOL_NAME}] Starting...")
+        try:
+            total = batch_rename(
+                filepath=CUST_FILEPATH, 
+                new_name=CUST_NEW_NAME, 
+                delimiter=CUST_DELIMITER
+            )
+            print(f"[{TOOL_NAME}] Complete!")
+        except ValueError as err:
+            print(f"[{TOOL_NAME}] {err}")
+        except Exception as err:
+            print(f"[{TOOL_NAME}] {err}")
+
+    input("\nPress Enter to exit...")
