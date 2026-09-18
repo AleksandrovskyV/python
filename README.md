@@ -3,7 +3,7 @@
 <div class="btn-about" >
 <img src="./assets/python.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<h1>Pyside6 Apps</h1><br>
+<h2>Pyside6 Apps</h2><br>
 Hey dudes. W\*lcome [2]
 </p><br clear="left"></div>
 
