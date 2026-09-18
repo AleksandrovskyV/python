@@ -11,6 +11,13 @@ Hey dudes. W\*lcome [2]
 \# Нужно было записать реальное перемещение мыши, ориентируясь на скриншоты<br>
 [> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder)
 
+\# Нужно было глянуть все иконки sidefx houdini разом<br>
+[> svg_viewer](https://github.com/AleksandrovskyV/svg_viewer)
+
+> Тут осенение, что qt\tinker можно заменить сервером с готовым html,
+> а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
+
+
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
@@ -31,6 +38,8 @@ Hey dudes. W\*lcome [3] > [python utils folder](https://github.com/Aleksandrovsk
 
 \# Нужно было добавить единый интерфейс запуска скриптов<br>
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
+
+
 
 <br>
 
