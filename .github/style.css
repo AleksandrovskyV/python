@@ -21,6 +21,12 @@ color:var(--pt);
 border-bottom: 1px solid #eaecef;
 }
 
+.mht{
+font-size: 2em !important;
+color: white;
+font-weight: auto !important;
+}
+
 h2#cheker{
 font-size:2.5em; font-weight:600;
 line-height: 1.25;margin-top:24px;margin-bottom: 16px;
