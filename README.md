@@ -5,8 +5,7 @@
 <p style="margin-top: 12px ">
 <strong class="mht" style="font-size: 20px;">Python Apps</strong><br>
 Hey dudes. W\*lcome [2]
-</p><br clear="left"></div>
-
+</p><br clear="left"></div><br>
 
 \# Нужно было записать реальное перемещение мыши, ориентируясь на скриншоты<br>
 [> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder)
@@ -24,10 +23,7 @@ Hey dudes. W\*lcome [2]
 <p style="margin-top: 12px ">
 <strong class="mht" style="font-size: 20px;">Python Utils</strong><br>
 Hey dudes. W\*lcome [3] > <a style="color:black;text-decoration: underline;" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
-</p><br clear="left"></div>
-
-
-<br>
+</p><br clear="left"></div><br>
 
 \# Нужно было собрать gif из секвенции больше 500 кадров<br>
 [> pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)
