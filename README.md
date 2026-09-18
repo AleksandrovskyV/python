@@ -22,10 +22,8 @@ Hey dudes. W\*lcome [2]
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong class="mht">Python Utils</srong><br>
-
-Hey dudes. W\*lcome [3] > [folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
-
+<strong class="mht" style="font-size: 20px;">Python Utils</srong><br>
+Hey dudes. W\*lcome [3] > [<a style="color:black;text-decoration: underline;" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a>]
 </p><br clear="left"></div>
 
 
