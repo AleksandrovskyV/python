@@ -3,7 +3,7 @@
 <div class="btn-about" >
 <img src="./assets/python.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong class="mht">Python Apps</strong><br>
+<strong class="mht" style="font-size: 20px;">Python Apps</strong><br>
 Hey dudes. W\*lcome [2]
 </p><br clear="left"></div>
 
