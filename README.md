@@ -3,7 +3,7 @@
 <div class="btn-about" >
 <img src="./assets/python.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong>Python Apps</strong><br>
+<strong class="mht">Python Apps</strong><br>
 Hey dudes. W\*lcome [2]
 </p><br clear="left"></div>
 
@@ -22,7 +22,7 @@ Hey dudes. W\*lcome [2]
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong>Python Utils</srong><br>
+<strong class="mht">Python Utils</srong><br>
 
 Hey dudes. W\*lcome [3] > [folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
 
