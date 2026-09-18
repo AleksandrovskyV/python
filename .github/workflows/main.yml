@@ -156,6 +156,7 @@ jobs:
           # Закрываем head и открываем контейнер для markdown
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
 
+          # Находит имя svg файла и делает из него второй класс, а затем вставляет линию
           tr -d '\r' < README.md \
             | pandoc -f markdown-yaml_metadata_block -t html \
             | sed 's/\.md"/\.html"/g' \
