@@ -1,0 +1,187 @@
+name: Deploy GitHub Pages without Jekyll Trash
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  LANG: c.UTF-8
+  LC_ALL: c.UTF-8
+  
+permissions:
+  contents: write 
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # === 1. ДЕПЛОЙ САЙТА ===
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Проверяем изменения для сайта
+      - name: Check for site changes
+        id: site-check
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            site_changed:
+              - '.github/**'
+              - 'README.md'
+
+      - name: Setup Pages
+        if: steps.site-check.outputs.site_changed == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Install Pandoc
+        if: steps.site-check.outputs.site_changed == 'true'
+        run: sudo apt-get install -y pandoc
+
+      - name: Build Clean HTML
+        if: steps.site-check.outputs.site_changed == 'true'
+        run: |
+
+          # метод замены ".gif" на "mp4", исправление <p> на <div class="mreplace">
+          process_html_videos() {
+            local input_file="$1"
+            local output_file="$2"
+            local temp_file="temp_processing.html"
+            
+            # Копируем исходный HTML во временный файл
+            cp "$input_file" "$temp_file"
+            
+            # Извлекаем все пути к гифкам из тегов <img>
+            grep -oP 'src="\K[^"]+\.gif' "$input_file" | sort -u | while read -r gif_path; do
+              # Очищаем путь для проверки файлов на диске виртуальной машины
+              local clean_path=$(echo "$gif_path" | sed 's|^\./||' | sed 's|^/||')
+              
+              # Формируем пути к mp4 и jpg на диске
+              local mp4_path="${clean_path%.gif}.mp4"
+              local jpg_path="${clean_path%.gif}.jpg"
+              
+              # Формируем пути для тегов в HTML
+              local html_mp4_path="${gif_path%.gif}.mp4"
+              local html_jpg_path="${gif_path%.gif}.jpg"
+              
+              # Изначально ставим в постер саму гифку
+              local final_poster="$gif_path"
+              
+              # ПРОВЕРКА 1: Видеофайл .mp4 СТРОГО обязан существовать
+              if [ -f "$mp4_path" ]; then
+                echo "Найдено видео для автозамены: $mp4_path"
+                
+                # ПРОВЕРКА 2: Если рядом лежит .jpg, берем его как постер
+                if [ -f "$jpg_path" ]; then
+                  echo "--> Найдена легкая JPG-заглушка для постера: $jpg_path"
+                  final_poster="$html_jpg_path"
+                else
+                  echo "--> [Предупреждение] JPG не найден, используем исходный GIF в качестве постера: $gif_path"
+                fi
+                
+                # Создаем точный тег видео для замены
+                local video_tag="<video autoplay muted loop playsinline poster=\"$final_poster\" ><source src=\"$html_mp4_path\" type=\"video/mp4\"></video>"
+                
+                # Экранируем спецсимволы для безопасного использования в sed
+                local safe_gif_path=$(echo "$gif_path" | sed 's|/|\\/|g' | sed 's|\.|\\.|g')
+                local safe_video_tag=$(echo "$video_tag" | sed 's|/|\\/|g')
+                
+                # 1. Заменяем только этот конкретный тег img на тег video
+                sed -i -E "s|<img[^>]+src=\"$safe_gif_path\"[^>]*>|$safe_video_tag|g" "$temp_file"
+
+                # 2. ИСПРАВЛЕНИЕ: Замена родительского <p>...</p> на <div>...</div> с любым внутренним контентом
+                # Шаг А: Меняем открывающий <p>, если сразу за ним (или через <span>) идет наше видео
+                sed -i -E "s|<p>(([[:space:]]*)(<span>)?$safe_video_tag)|<div class=\"mreplace\">\1|g" "$temp_file"
+                
+                # Шаг Б: Находим закрывающий </p> этой же группы. 
+                # Так как sed работает построчно, а pandoc выводит абзац в одну строку, 
+                # мы ищем </p>, которому предшествует наше видео и любые символы кроме тегов закрытия других блоков.
+                sed -i -E "s|($safe_video_tag.*)</p>|\1</div>|g" "$temp_file"
+
+                
+              else
+                echo "Видео не найдено, оставляем GIF: $mp4_path"
+              fi
+            done
+            
+            # Переносим обработанный результат в чистовой файл и удаляем временный
+            mv "$temp_file" "$output_file"
+          }
+
+          # -----------------------------------------------------------------
+          # 1. Создание mainpage ("index.html") из корневого README.md
+          # -----------------------------------------------------------------
+          cat << 'EOF' > index.html
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Collection python scripts & utils" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>python.utils</title>
+
+    <meta property="og:title" content="Python Utils">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vsky.space/python">
+    <meta property="og:description" content="Collection python scripts & utils">
+    <meta property="og:image" content="https://vsky.space/content/cover/python.jpg">
+    <meta property="og:image:secure_url" content="https://vsky.space/content/cover/python.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Python Utils">
+    <meta name="twitter:description" content="Collection python scripts & utils">
+    <meta name="twitter:image" content="https://vsky.space/content/cover/python.jpg">
+    <meta name="twitter:site" content="@AleksandrovskyV">
+
+    <link rel="canonical" href="http://vsky.space">
+    
+    <!-- Замораживаем базовый путь для картинок и ссылок, чтобы они не ломались -->
+    <base href="/python/">
+
+    <script>{let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}}</script>
+EOF
+
+          # Вшиваем стили из файла
+          echo '<style>' >> index.html
+          cat ./.github/style.css >> index.html
+          echo '</style>' >> index.html          
+
+          # Закрываем head и открываем контейнер для markdown
+          echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
+
+          # Базовая конвертация в промежуточный файл     
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' | sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
+          
+          # Запуск метода проверки видео для корня
+          process_html_videos "root_base.html" "root_final.html"
+          cat root_final.html >> index.html
+          rm root_base.html root_final.html
+          
+          echo '</div></body></html>' >> index.html
+
+          # Создаем точную копию главной страницы, но с именем "python" без расширения
+          cp index.html python
+
+          # Явно говорим GitHub Pages отдавать этот файл по запросу
+          echo -e "filtered_content:\n  - python" > _config.yml
+
+
+
+      - name: Upload artifact
+        if: steps.site-check.outputs.site_changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        if: steps.site-check.outputs.site_changed == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+

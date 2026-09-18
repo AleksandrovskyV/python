@@ -196,27 +196,28 @@ def user_window_gui():
             template_spec_path = os.path.join(script_dir, template_spec_name)
             
             if os.path.exists(template_spec_path):
-                print(f"   -> Template mode: Copying plain from {template_spec_name} and updating target to '{script_name}'...")
-                try:
-                    with open(template_spec_path, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    # 1. Заменяем целевой скрипт в блоке Analysis (ищет любой файл с расширением .py в кавычках)
-                    # Например, ['vram_optimizer.py'] превратит в ['имя_нового_скрипта.py']
-                    content = re.sub(r"['\"][^'\"]+\.py['\"]", f"'{script_name}'", content)
-                    
-                    # 2. Заменяем имя итогового .exe файла во всем конфиге
-                    # Например, name='vram_optimizer_from_gpt_reduce' превратит в name='имя_нового_скрипта'
-                    updated_content = re.sub(r"""name\s*=\s*['"][^'"]+['"]""", f"name='{base_name}'", content)
-                    
-                    # Сохраняем как {имя_текущего_скрипта}.spec
-                    with open(target_spec_path, 'w', encoding='utf-8') as f:
-                        f.write(updated_content)
-                        
+                # ИСПРАВЛЕНО: Если выбранный спек — это и есть родной спек текущего файла,
+                # мы просто билдим его напрямую, защищая кастомные настройки от перезаписи регуляркой!
+                if template_spec_name == target_spec_file:
+                    print(f"   -> Match found: Directly building from your customized '{template_spec_name}' as is...")
                     cmd = [sys.executable, "-m", "PyInstaller", "--clean", target_spec_file]
-                except Exception as e:
-                    print(f"   -> Error processing template spec: {e}. Falling back to default spec check...")
-                    selected_spec_mode = "auto-generate"
+                else:
+                    # Ветка для реального клонирования чужого шаблона под новый скрипт
+                    print(f"   -> Template mode: Copying plain from {template_spec_name} and updating target to '{script_name}'...")
+                    try:
+                        with open(template_spec_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                        
+                        content = re.sub(r"['\"][^'\"]+\.py['\"]", f"'{script_name}'", content)
+                        updated_content = re.sub(r"""name\s*=\s*['"][^'"]+['"]""", f"name='{base_name}'", content)
+                        
+                        with open(target_spec_path, 'w', encoding='utf-8') as f:
+                            f.write(updated_content)
+                            
+                        cmd = [sys.executable, "-m", "PyInstaller", "--clean", target_spec_file]
+                    except Exception as e:
+                        print(f"   -> Error processing template spec: {e}. Falling back to default spec check...")
+                        selected_spec_mode = "auto-generate"
             else:
                 print(f"   -> Template {template_spec_name} not found! Falling back to auto-generate...")
                 selected_spec_mode = "auto-generate"
