@@ -22,12 +22,12 @@ Hey dudes. W\*lcome [2]
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong class="mht" style="font-size: 20px;">Python Utils</srong><br>
-Hey dudes. W\*lcome [3] > [<a style="color:black;text-decoration: underline;" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a>]
+<strong class="mht" style="font-size: 20px;">Python Utils</strong><br>
+Hey dudes. W\*lcome [3] > <a style="color:black;text-decoration: underline;" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
 </p><br clear="left"></div>
 
 
- <br>
+<br>
 
 \# Нужно было собрать gif из секвенции больше 500 кадров<br>
 [> pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)
