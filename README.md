@@ -17,13 +17,14 @@ Hey dudes. W\*lcome [2]
 > Тут осенение, что qt\\tinker можно заменить сервером с готовым html,
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
 
+<br>
 
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <h2>Python Utils</h2><br>
 
-Hey dudes. W\*lcome [3] > [python utils folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
+Hey dudes. W\*lcome [3] > [folder](https://github.com/AleksandrovskyV/python/tree/main/utils)
 
 </p><br clear="left"></div>
 
@@ -40,10 +41,5 @@ Hey dudes. W\*lcome [3] > [python utils folder](https://github.com/Aleksandrovsk
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
 
 
-
 <br>
 
-Нужно было добавить интерфейс самим скриптам,<br>
-сохранив их работу пкм>python<br>
-> добавлен modules/tinker.py
-> старые версии отправлены в ./prototype/..
