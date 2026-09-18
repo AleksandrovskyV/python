@@ -14,7 +14,7 @@ Hey dudes. W\*lcome [2]
 \# Нужно было глянуть все иконки sidefx houdini разом<br>
 [> svg_viewer](https://github.com/AleksandrovskyV/svg_viewer)
 
-> Тут осенение, что qt\tinker можно заменить сервером с готовым html,
+> Тут осенение, что qt\\tinker можно заменить сервером с готовым html,
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
 
 
