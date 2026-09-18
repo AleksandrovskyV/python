@@ -8,6 +8,8 @@ Hey dudes. W\*lcome [2]
 </p><br clear="left"></div>
 
 
+\# Нужно было записать реальное перемещение мыши, ориентируясь на скриншоты<br>
+[> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder)
 
 <div class="btn-about" >
 <img src="./assets/cursor.png" width="84" align="left" style="padding-right: 12px;">
@@ -21,13 +23,13 @@ Hey dudes. W\*lcome [3] > [python utils folder](https://github.com/Aleksandrovsk
 
  <br>
 
-#Нужно было собрать gif из секвенции больше 500 кадров<br>
+\# Нужно было собрать gif из секвенции больше 500 кадров<br>
 [> pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)
 
-#Нужно было переименовать секвенцию A_[####] > B_[####]<br>
+\# Нужно было переименовать секвенцию A_[####] > B_[####]<br>
 [> batch_renamer](https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py)
 
-#Нужно было добавить единый интерфейс запуска скриптов<br>
+\# Нужно было добавить единый интерфейс запуска скриптов<br>
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
 
 <br>
