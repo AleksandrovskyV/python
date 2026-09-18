@@ -66,13 +66,10 @@ h2#cheker{color:grey}
 .brkr{display: block;}
 }
 
-.btnico{margin-bottom:8px;margin-right:12px;float:left;min-width:84px;aspect-ratio: 1 / 1;
+.btnico{margin-bottom:8px;margin-right:12px;float:left; width: 84px; min-width:84px;aspect-ratio: 1 / 1;
 background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;}
 
-.btnico img{
-    width: None;
-    min-width: 84px;
-}
+
 
 .downico{display:block}
 .downico::before{content:"";display:inline-block;width:1em;height:0.8em;margin-right:0.1em;
