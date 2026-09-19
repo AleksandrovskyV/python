@@ -30,7 +30,7 @@ Hey dudes. W\*lcome [3] > <a class="mhl" href="https://github.com/Aleksandrovsky
 </p><br clear="left"></div><br>
 
 \# Нужно было собрать gif из секвенции больше 500 кадров<br>
-[> pillow gif maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)
+[> pillow_gif_maker](https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py)
 
 \# Нужно было переименовать секвенцию A_[####] > B_[####]<br>
 [> batch_renamer](https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py)
