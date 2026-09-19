@@ -165,12 +165,13 @@ jobs:
           # 2. Находим блоки, содержащие одновременно ссылку и пустую метку exe
           echo "=== НАЧАЛО СЕТЕВОГО АНАЛИЗА РЕЛИЗОВ ==="
           
-          cat temp_flat.html | sed 's|<p class="abblock">|\n<p class="abblock">|g' | grep 'class="exe"' | while read -r ab_block; do
+          # Нарезаем плоский файл на четкие строки по тегу карточки с помощью awk
+          cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} {print "<p class=\"abblock\">" $0}' | grep 'class="exe"' | while read -r ab_block; do
             
-            if [ -z "$ab_block" ]; then continue; fi
+            if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
             
             # Вытаскиваем чистый URL репозитория из склеенного абзаца
-            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[^/]+/[^/ ">\r\n]+' | head -n 1)
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[[^/]]+/[[^/ ">\r\n]]+' | head -n 1)
             
             if [ ! -z "$repo_url" ]; then
               # Очищаем путь до формата owner/repo для API
@@ -178,38 +179,39 @@ jobs:
               
               echo ""
               echo "=========================================================="
-              echo " ОБРАБОТКА РЕПОЗИТОРИЯ: $repo_url"
-              echo " Путь для запроса к API: $repo_path"
+              echo "🎯 ОБРАБОТКА РЕПОЗИТОРИЯ: $repo_url"
+              echo "ℹ️ Путь для запроса к API: $repo_path"
               echo "--------------------------------------------------------=="
               
               # Делаем АВТОРИЗОВАННЫЙ запрос к API GitHub и сохраняем сырой ответ во временную переменную
               API_RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest")
               
-              echo " СЫРОЙ ОТВЕТ СЕРВЕРА GITHUB API (первые 500 символов):"
+              echo "📝 СЫРОЙ ОТВЕТ СЕРВЕРА GITHUB API (первые 500 символов):"
               echo "$API_RESPONSE" | head -c 500
               echo -e "\n--------------------------------------------------------=="
               
               # Вытаскиваем точный URL .exe файла через jq
-              DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+              DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[[ ]]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
-                echo " УСПЕХ! Найден файл: $(basename $DOWNLOAD_URL)"
-                echo " Прямая ссылка: $DOWNLOAD_URL"
+                echo "✅ УСПЕХ! Найден файл: \$(basename \$DOWNLOAD_URL)"
+                echo "🔗 Прямая ссылка: $DOWNLOAD_URL"
                 
                 # Экранируем спецсимволы в урлах для безопасной работы внутри sed
-                escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
-                escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
+                escaped_url=$(echo "$repo_url" | sed 's/[[&/]]/\\&/g')
+                escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[[&/]]/\\&/g')
                 
                 # Точечно заменяем заглушку exe в плоском файле для этой конкретной ссылки
-                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>([^<]*)/([^<]*)<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
+                sed -i -E "s|href=\"$escaped_url\"([[^>]]*>)([[^<]]*)</a>([[^<]]*)/([[^<]]*)<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
               else
-                echo " ОШИБКА: .exe файл в релизах для $repo_path не обнаружен."
-                echo " Проверка ассетов в ответе:"
-                echo "$API_RESPONSE" | jq -r '.assets[]? | .name' 2>/dev/null || echo "Ассеты отсутствуют (возможно, нет релизов или ошибка доступа 403/404)"
+                echo "❌ ОШИБКА: .exe файл в релизах для $repo_path не обнаружен."
+                echo "🔍 Проверка ассетов в ответе:"
+                echo "$API_RESPONSE" | jq -r '.assets[[ ]]? | .name' 2>/dev/null || echo "Ассеты отсутствуют (возможно, нет релизов или ошибка доступа 403/404)"
               fi
               echo "=========================================================="
             fi
           done
+
 
           # Возвращаем плоскую строку обратно в temp.html для финальной обработки
           cat temp_flat.html > temp.html
