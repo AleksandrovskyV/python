@@ -21,7 +21,7 @@ color:white;
 border-bottom: 1px solid #eaecef;
 }
 
-.mht{
+.icoName{
 font-family: sans-serif;
 font-size: 2em !important;
 color: white;
@@ -60,12 +60,12 @@ summary:hover{text-decoration:none;cursor:pointer;}
 
 h2#cheker{color:grey}
 
-.btn-about{
+.icoAbout{
     margin-top: 6vh;
     display:flex;
     align-items:flex-start;
 }
-.btn-info{
+.icoInfo{
     margin-top: 0.7vh;
     margin-left: 2vh;
 }
