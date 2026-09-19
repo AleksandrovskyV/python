@@ -14,8 +14,8 @@ Hey dudes. W\*lcome [2]
 \# Нужно было пожать директиву текстур, словно я танос \*<br><div class="repo">
 [> vram_folder_crunch](https://github.com/AleksandrovskyV/vram_crunch) / <div class="exe"></div></div>
 
-\# Нужно было глянуть все иконки sidefx houdini разом<br><div class="repo">
-[> svg_viewer](https://github.com/AleksandrovskyV/svg_viewer) / <div class="exe"></div></div>
+\# Нужно было глянуть все иконки sidefx houdini разом<br>
+<a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <div class="exe"></div></div>
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
