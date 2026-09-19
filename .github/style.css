@@ -69,6 +69,9 @@ border-left: 2px solid #ccc;
 height: 100px;
 margin-left: 1vh;
 }
+.ablink a {
+color:var(--pt);
+}
 .svgico{margin-bottom:8px;margin-right:12px;float:left; width: 84px !important; min-width:84px;aspect-ratio: 1 / 1;
 background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;}
 
@@ -77,8 +80,8 @@ color: #586069;
 text-decoration: underline;
 }
 p.workflowlink {
-    padding-top: 6vh;
-    color: #888 !important;
+padding-top: 6vh;
+color: #888 !important;
 }
 
 
