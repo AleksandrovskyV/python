@@ -61,7 +61,7 @@ summary:hover{text-decoration:none;cursor:pointer;}
 h2#cheker{color:grey}
 
 .btn-about{
-    margin-top: 10vh;
+    margin-top: 6vh;
     display:flex;
     align-items:flex-start;
 }
