@@ -132,7 +132,7 @@ jobs:
           # меняем синюю точку в заголовках
           cat temp.html | sed 's/\xF0\x9F\x94\xB9 /<span class="cdot"><\/span>/g' | \
           # оборачиваем svg в собственный класс
-          sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="btnico"\4><div class="line"><\/div>|g' | \
+          sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="svgico"\4><div class="line"><\/div>|g' | \
           # добавляем в заголовок префикс названия репозитории
           sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
 
