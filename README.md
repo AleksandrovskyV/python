@@ -51,7 +51,7 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">entry_run.py</a></span></p>
 
-> В общем если скачать папку и запускать через <span style="color: white;">entry_run.bat</span><span class="hubonly"><br></span>
+> В общем если скачать папку и запускать через <span style="color: #777;">entry_run.bat</span><span class="hubonly"><br></span>
 > в windows будет интерфейс т.к. его обеспечит ./modules/tinker.py 
 
 <br><br>
