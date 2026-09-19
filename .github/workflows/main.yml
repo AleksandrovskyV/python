@@ -159,7 +159,6 @@ jobs:
           # 1. Берем README.md, убираем hubonly и собираем базовый HTML во временный файл
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
-          # Превращаем файл в одну сплошную строку, чтобы pandoc-переносы не ломали логику
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
 
           # 2. Ищем каждую карточку по тегу <p class="abblock">
@@ -167,52 +166,31 @@ jobs:
             
             if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
             
-            echo ""
-            echo "=========================================================="
-            echo "=== Обработка блока карточки ==="
+            # Вытаскиваем URL репозитория 
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com/[^/]+/[^/ ">\r\n]+' | head -n 1)
             
-            # Намертво вырезаем URL репозитория через sed, забирая всё внутри href=" ... "
-            repo_url=$(echo "$ab_block" | sed -n 's|.*href="\([^"]*\)".*|\1|p' | tr -d '[:space:]')
-            
-            if [ ! -z "$repo_url" ] && [[ "$repo_url" == "https://github.com"* ]]; then
-              # Очищаем путь до формата owner/repo и убираем любые пробелы вокруг
-              repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2 | tr -d '[:space:]')
+            if [ ! -z "$repo_url" ]; then
+              repo_path=$(echo "$repo_url" | sed 's|https://github.com/||' | cut -d'/' -f1,2)
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
-              # Делаем АВТОРИЗОВАННЫЙ запрос к официальному API GitHub
-              API_RESPONSE=$(curl -s -f -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest")
+              # Делаем запрос к официальному API GitHub
+              DOWNLOAD_URL=$(curl -s "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
-              if [ $? -eq 0 ]; then
-                echo "📝 СЫРОЙ ОТВЕТ СЕРВЕРА GITHUB API (первые 400 символов):"
-                echo "$API_RESPONSE" | head -c 400
-                echo -e "\n--------------------------------------------------------"
+              if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
+                echo "Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
+                escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
+                escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
-                # Вытаскиваем точный URL .exe файла через jq
-                DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
-                
-                if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
-                  echo "✅ Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
-                  
-                  # Экранируем спецсимволы в урлах для безопасной работы внутри sed
-                  escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
-                  escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
-                  
-                  # Меняем заглушку в плоском файле, привязываясь к конкретному URL репозитория
-                  sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
-                else
-                  echo "❌ Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
-                fi
+                # Меняем заглушку в плоском файле, привязываясь к конкретному URL репозитория
+                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
               else
-                echo "❌ ОШИБКА: Релиз для $repo_path на GitHub отсутствует (API вернул 404)"
+                echo "Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
               fi
             else
-              echo "Ошибка: Не удалось найти валидный URL репозитория в текущем HTML-абзаце"
-              echo "Проблемный кусок: $ab_block"
+              echo "Ошибка: Не удалось найти URL репозитория в текущем HTML-абзаце"
             fi
-            echo "=========================================================="
           done
 
-          # Возвращаем плоскую строку обратно в temp.html для финальной обработки
           cat temp_flat.html > temp.html
           rm temp_flat.html
 
@@ -223,7 +201,6 @@ jobs:
 
           # Удаляем временный файл
           rm temp.html
-
 
 
 
