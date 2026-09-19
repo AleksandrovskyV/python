@@ -95,7 +95,7 @@ jobs:
 
           # 1. Remove <hubonly> and replace <workflowlink>
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | \
-          sed "s|<div class=\"workflowlink\"><\/div>|<p class=\"workflowlink\">\&#42; html собран <a href=\"https://github.com/${GITHUB_REPOSITORY}/tree/main/.github\">этим</a> workflow<\/p><br><br><br><p class='ending'>.</p>|g" | \
+          sed "s|<div class=\"workflowlink\"><\/div>|<p class=\"workflowlink\">\&#42; html собран <a href=\"https://github.com/${GITHUB_REPOSITORY}/tree/main/.github\">этим</a> workflow<\/p><br><br><p class='ending'>.</p>|g" | \
           tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
