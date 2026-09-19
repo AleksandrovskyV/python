@@ -12,10 +12,10 @@ Hey dudes. W\*lcome [2]
 <a class="repo" href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a><p>/</p><div class="exe"></div>
 
 \# Нужно было пожать директиву текстур, словно я танос \*<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a><p>/</p><div class="exe"></div>
+<p><a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a> / <div class="exe"></div></p>
 
 \# Нужно было глянуть все иконки sidefx houdini разом<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a><p>/</p><div class="exe"></div>
+<p><a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <div class="exe"></div></p>
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
