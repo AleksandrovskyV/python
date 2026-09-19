@@ -92,11 +92,8 @@ jobs:
           # close <head> and create body content block
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
 
-          # 1. remove hubonly marks from README.md
-          #sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
-
-          # 1. Убираем hubonly и динамически разворачиваем блок workflowlink прямо в Markdown
+          # 1. Remove <hubonly> and replace <workflowlink>
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | \
           sed "s|<div class=\"workflowlink\"><\/div>|<hr><p class=\"workflowlink\">html собран этим <a href=\"https://github.com/${GITHUB_REPOSITORY}/tree/main/.github\">workflow</a><\/p>|g" | \
           tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
@@ -138,7 +135,8 @@ jobs:
           cat temp_flat.html > temp.html
           rm temp_flat.html
 
-          # Все замены летят напрямую в index.html без создания root_base.html
+          # append svg class, add line between svg and text
+          # replace standart hub point on headers
           cat temp.html | sed 's/\xF0\x9F\x94\xB9 /<span class="cdot"><\/span>/g' | \
           sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="svgico"\4><div class="line"><\/div>|g' | \
           sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' >> index.html
