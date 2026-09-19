@@ -37,17 +37,17 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было собрать gif из секвенции больше 500 кадров
+Нужно было собрать gif из секвенции <span class="hubonly"><br>&nbsp;&nbsp;&nbsp;</span>больше 500 кадров
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow_gif_maker.py</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было переименовать секвенцию A_[####] > B_[####]
+Нужно было переименовать секвенцию <span class="hubonly"><br>&nbsp;&nbsp;&nbsp;</span>A_[####] > B_[####]
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">batch_renamer.py</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было добавить единый интерфейс запуска скриптов
+Нужно было добавить единый интерфейс <span class="hubonly"><br>&nbsp;&nbsp;&nbsp;</span>запуска скриптов
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">entry_run.py</a></span></p>
 
