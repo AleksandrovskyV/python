@@ -163,7 +163,6 @@ jobs:
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
 
           # 2. Ищем каждую карточку по тегу <p class="abblock">
-          # 2. Ищем каждую карточку по тегу <p class="abblock">
           cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} /class=\"exe\"/{print "<p class=\"abblock\">" $0}' | while read -r ab_block; do
             
             if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
@@ -172,12 +171,12 @@ jobs:
             echo "=========================================================="
             echo "=== Обработка блока карточки ==="
             
-            # Вытаскиваем чистый URL репозитория и жестко отсекаем кавычки или пробелы на конце через кусок [^ ]
-            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[^/ ]+/[^/ ">\r\n[:space:]]+' | head -n 1)
+            # Твой оригинальный рабочий поиск ссылки
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[^/]+/[^/ ">\r\n]+' | head -n 1)
             
             if [ ! -z "$repo_url" ]; then
-              # Очищаем путь до формата owner/repo и берем строго первые 2 блока, чтобы убрать любой мусор
-              repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2 | tr -d ' ')
+              # Очищаем путь от пробелов намертво, чтобы curl не падал
+              repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2 | tr -d '[:space:]')
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
               # Делаем АВТОРИЗОВАННЫЙ запрос к официальному API GitHub
@@ -191,7 +190,6 @@ jobs:
                 # Вытаскиваем точный URL .exe файла через jq
                 DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
                 
-                # Если реальный .exe файл в релизах найден
                 if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
                   echo "✅ Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
                   
@@ -205,14 +203,13 @@ jobs:
                   echo "❌ Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
                 fi
               else
-                echo "❌ ОШИБКА: Запрос к API вернул ошибку (возможно, релизов еще нет и возвращен 404)"
+                echo "❌ ОШИБКА: Релиз для $repo_path на GitHub отсутствует (API вернул 404)"
               fi
             else
               echo "Ошибка: Не удалось найти URL репозитория в текущем HTML-абзаце"
             fi
             echo "=========================================================="
           done
-
 
           # Возвращаем плоскую строку обратно в temp.html для финальной обработки
           cat temp_flat.html > temp.html
@@ -225,6 +222,7 @@ jobs:
 
           # Удаляем временный файл
           rm temp.html
+
 
 
 
