@@ -5,6 +5,15 @@
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}*{box-sizing:border-box}
 body{margin:0;font-family: sans-serif; color:var(--pt);background:var(--bg)}
 
+hr {
+height: 0.1em;
+width: 400px;
+background-color: #353b41;
+border: 0;
+}
+summary{text-decoration: underline;}
+summary:hover{text-decoration:none;cursor:pointer;}
+
 .container-lg{max-width:1024px;margin:0 auto}
 .px-3{padding-left:16px;padding-right:16px}
 .my-5{margin-top:10vh;margin-bottom:32px}
@@ -59,8 +68,6 @@ margin-left: 1vh;
 .svgico{margin-bottom:8px;margin-right:12px;float:left; width: 84px !important; min-width:84px;aspect-ratio: 1 / 1;
 background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;}
 
-summary{text-decoration: underline;}
-summary:hover{text-decoration:none;cursor:pointer;}
 
 /* width fix Web = 95% Mobile = 100% */
 .markdown-body{ width: clamp(95%, 100% + (100vw - 780px) * (95 - 100) / (1000 - 780), 100%);
@@ -70,10 +77,3 @@ summary:hover{text-decoration:none;cursor:pointer;}
 .markdown-body img{width:100%; height: auto;}
 }
 
-hr {
-    height: 0.25em;
-    padding: 0;
-    margin: 24px 0;
-    background-color: #d0d7de;
-    border: 0;
-}
