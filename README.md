@@ -9,10 +9,10 @@ Hey dudes. W\*lcome [2]
 
 \# Нужно было записать реальное перемещение мыши,<br>
 &nbsp;&nbsp;&nbsp;ориентируясь на скриншоты<br><div class="repo">
-[> mouse_states_recorder.exe](https://github.com/AleksandrovskyV/mouse_states_recorder) / <div class="exe"></div></div>
+[> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder) / <div class="exe"></div></div>
 
 \# Нужно было пожать директиву текстур, словно я танос \*<br><div class="repo">
-[> vram_folder_crunch.exe](https://github.com/AleksandrovskyV/vram_crunch) / <div class="exe"></div></div>
+[> vram_folder_crunch](https://github.com/AleksandrovskyV/vram_crunch) / <div class="exe"></div></div>
 
 \# Нужно было глянуть все иконки sidefx houdini разом<br><div class="repo">
 [> svg_viewer](https://github.com/AleksandrovskyV/svg_viewer) / <div class="exe"></div></div>
