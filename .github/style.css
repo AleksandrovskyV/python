@@ -69,3 +69,11 @@ summary:hover{text-decoration:none;cursor:pointer;}
 @media (max-width: 780px) {
 .markdown-body img{width:100%; height: auto;}
 }
+
+hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #d0d7de;
+    border: 0;
+}

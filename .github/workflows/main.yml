@@ -93,7 +93,14 @@ jobs:
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
 
           # 1. remove hubonly marks from README.md
-          sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
+          #sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
+
+
+          # 1. Убираем hubonly и динамически разворачиваем блок workflowlink прямо в Markdown
+          sed -E 's|<span class="hubonly">.*?</span>||g' README.md | \
+          sed "s|<div class=\"workflowlink\"><\/div>|<hr><p> html собран этим <a href=\"https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}\">>workflow</a><\/p>|g" | \
+          tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
+
 
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
 
