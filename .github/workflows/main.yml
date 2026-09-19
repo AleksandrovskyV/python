@@ -173,12 +173,9 @@ jobs:
               repo_path=$(echo "$repo_url" | sed 's|https://github.com/||' | cut -d'/' -f1,2)
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
-              # Делаем запрос к официальному API GitHub старая
-              #DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
-              # Новая
+              # Делаем запрос к официальному API GitHub
               DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
 
-              
               echo "URL: $DOWNLOAD_URL"
 
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
@@ -187,7 +184,7 @@ jobs:
                 escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
                 # Меняем заглушку в плоском файле, привязываясь к конкретному URL репозитория
-                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
+                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">.<a href=\"$escaped_dl\">exe</a><\/span>|g" temp_flat.html
               else
                 echo "Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
               fi
