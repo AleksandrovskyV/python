@@ -27,7 +27,7 @@ Hey dudes. W\*lcome [2]
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
 
-<br><br>
+<br><br><br>
 
 <div class="icoAbout" >
 <img src="./assets/cursor.svg" width="84" align="left">
