@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # === 1. ДЕПЛОЙ САЙТА ===
+  # === MAIN PAGE FROM README ===
   deploy:
     environment:
       name: github-pages
@@ -132,25 +132,22 @@ jobs:
           cat temp_flat.html > temp.html
           rm temp_flat.html
 
-          # меняем синюю точку у заголовков
+          # Все замены летят напрямую в index.html без создания root_base.html
           cat temp.html | sed 's/\xF0\x9F\x94\xB9 /<span class="cdot"><\/span>/g' | \
-          # оборачиваем svg в собственный класс под css
           sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="svgico"\4><div class="line"><\/div>|g' | \
-          # добавляем в заголовок префикс названия репозитории
-          sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
+          sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' >> index.html
 
-          # Удаляем временный файл
+          # remove temp
           rm temp.html
-
-          cat root_base.html >> index.html
-          rm root_base.html
           
           echo '</div></body></html>' >> index.html
+          
+          # --------------- CREATE COPY W TARGET NAME -------------
 
-          # Создаем копию index.html но с её точным именем 
+          # Copy index.html but with target name 
           cp index.html python
 
-          # Говорим GitHub Pages отдавать этот файл по запросу
+          # Say GitHub Pages reback file on call
           echo -e "filtered_content:\n  - python" > _config.yml
 
 
