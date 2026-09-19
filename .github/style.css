@@ -73,12 +73,12 @@ margin-left: 1vh;
 background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;}
 
 .workflowlink a {
-color:#888;
+color: #586069;
 text-decoration: underline;
 }
 p.workflowlink {
     padding-top: 20px;
-    color: #586069 !important;
+    color: #888 !important;
 }
 
 
