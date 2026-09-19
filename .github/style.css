@@ -110,5 +110,5 @@ color: var(--bg);
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .my-5{margin-top:24px;}
-    .dewidthmob{letter-spacing: -0.15px !important; }
+    .dewidthmob{letter-spacing: -0.05px !important; }
 }
