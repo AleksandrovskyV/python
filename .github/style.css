@@ -22,11 +22,6 @@ summary:hover{text-decoration:none;cursor:pointer;}
 .my-5{margin-top:84px;margin-bottom:32px}
 
 .markdown-body p{font-family: "Segoe UI", sans-serif !important;  font-size:16px;letter-spacing: 0.2px;max-width: 870px;}
-.markdown-body p {
-    font-family: "Segoe UI", sans-serif !important;
-    font-size: 16px;
-    max-width: 870px;
-}
 
 .markdown-body h1{line-height:1.25;font-size:2em;font-weight: 600;
 padding-bottom: 0.3em;margin-top: 24px;margin-bottom: 16px;
@@ -110,5 +105,5 @@ color: var(--bg);
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .my-5{margin-top:24px;}
-    .dewidthmob{letter-spacing: -0.05px !important; }
+    .dewidthmob{letter-spacing: -0.04px !important; }
 }
