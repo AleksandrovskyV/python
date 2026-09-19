@@ -173,8 +173,11 @@ jobs:
               repo_path=$(echo "$repo_url" | sed 's|https://github.com/||' | cut -d'/' -f1,2)
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
-              # Делаем запрос к официальному API GitHub
-              DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+              # Делаем запрос к официальному API GitHub старая
+              # DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+              # Новая
+              DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/{$repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+
               
               echo "URL: $DOWNLOAD_URL"
 
