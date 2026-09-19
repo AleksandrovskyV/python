@@ -1,6 +1,6 @@
 :root {
 --bg: #000000;
---pt: #999999;
+--pt: #a9a9a9;
 }
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}*{box-sizing:border-box}
 body{margin:0;font-family: sans-serif; color:var(--pt);background:var(--bg)}
@@ -17,7 +17,7 @@ border-bottom: 1px solid #eaecef;}
 .markdown-body h2{
 font-size:1.7em; font-weight:400;
 display:grid;grid-template-columns:auto 1fr;align-items:start;
-color:var(--pt);
+color:white;
 border-bottom: 1px solid #eaecef;
 }
 
@@ -41,7 +41,7 @@ border-bottom:0;
 }
 .markdown-body h2 a{text-decoration:underline;color:var(--pt);display:block;font-size:0.54em;line-height:1.2;padding-top:.75em}
 
-.markdown-body a{color:#1370e7;font-size:1.5em;text-decoration:none}.markdown-body a:hover{text-decoration:underline}
+.markdown-body a{color:#1370e7;font-size:1.5em;text-decoration:none;font-weight: bold;}.markdown-body a:hover{text-decoration:underline}
 .markdown-body strong{font-weight: 600;}
 .markdown-body img{width: auto; height: auto; max-width: none;}
 .markdown-body blockquote{margin:0;padding-left:16px;border-left:4px solid #2f4051;color:#586069}
