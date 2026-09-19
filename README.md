@@ -29,14 +29,12 @@ Hey dudes. W\*lcome [2]
 Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
 </p><br clear="left"></div><br>
 
-\# Нужно было собрать gif из секвенции больше 500 кадров<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">> pillow_gif_maker</a>
-
-\# Нужно было переименовать секвенцию A_[####] > B_[####]<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">> batch_renamer</a>
-
-\# Нужно было добавить единый интерфейс запуска скриптов<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">> entry_run</a>
+<p>&#35; Нужно было собрать gif из секвенции больше 500 кадров<br>
+<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">> pillow_gif_maker</a></p>
+<p>&#35; Нужно было переименовать секвенцию A_[####] > B_[####]<br>
+<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">> batch_renamer</a></p>
+<p>&#35; Нужно было добавить единый интерфейс запуска скриптов<br>
+<a class="repo" href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">> entry_run</a></p>
 
 > В общем если скачать папку и запускать через entry_run.bat<br>
 > в windows будет интерфейс т.к. его обеспечит ./modules/tinker.py 
