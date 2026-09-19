@@ -10,17 +10,17 @@ Hey dudes. W\*lcome [2]
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было записать реальное перемещение мыши,<span class="hubonly"><br>&nbsp;&nbsp;</span>
 ориентируясь на скриншоты
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo"
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
    href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_recorder</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было пожать директиву текстур, словно я танос *
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo"
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
    href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было глянуть все иконки sidefx houdini разом
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo" 
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> / <span class="exe"></span></span></p>
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
@@ -38,17 +38,17 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было собрать gif из секвенции больше 500 кадров
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo" 
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow_gif_maker</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было переименовать секвенцию A_[####] > B_[####]
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo" 
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">batch_renamer</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было добавить единый интерфейс запуска скриптов
-</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;</span><a class="repo" 
+</span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">entry_run</a></span></p>
 
 > В общем если скачать папку и запускать через entry_run.bat<br>
