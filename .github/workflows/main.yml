@@ -174,7 +174,7 @@ jobs:
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
               # Делаем запрос к официальному API GitHub
-              DOWNLOAD_URL=$(curl -s "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+              DOWNLOAD_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
               echo "URL: $DOWNLOAD_URL"
 
