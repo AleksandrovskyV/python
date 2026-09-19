@@ -8,6 +8,7 @@ body{margin:0;font-family: sans-serif; color:var(--pt);background:var(--bg)}
 hr {
 height: 0.1em;
 width: 560px;
+padding-top: 20px;
 background-color: #353b41;
 border: 0;
 margin-left: 0; /* Прижимает линию к левому краю */
@@ -76,7 +77,7 @@ color:#888;
 text-decoration: underline;
 }
 .workflowlink p {
-color:#586069;
+color:#586069 !important;
 }
 
 
