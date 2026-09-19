@@ -39,17 +39,17 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было собрать gif из секвенции больше 500 кадров
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
-   href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow_gif_maker</a></span></p>
+   href="https://github.com/AleksandrovskyV/python/blob/main/utils/pillow_gif_maker.py">pillow_gif_maker.py</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было переименовать секвенцию A_[####] > B_[####]
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
-   href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">batch_renamer</a></span></p>
+   href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">batch_renamer.py</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было добавить единый интерфейс запуска скриптов
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
-   href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">entry_run</a></span></p>
+   href="https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py">entry_run.py</a></span></p>
 
 > В общем если скачать папку и запускать через entry_run.bat<br>
 > в windows будет интерфейс т.к. его обеспечит ./modules/tinker.py 
