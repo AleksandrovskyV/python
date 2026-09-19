@@ -159,37 +159,41 @@ jobs:
           # 1. Берем README.md, убираем hubonly и собираем базовый HTML во временный файл
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
-          # 2. Ищем ТОЛЬКО те строки, где физически присутствует пустая метка exe
-          grep -n 'class="exe"' temp.html | cut -d: -f1 | while read -r line_num; do
+          # 2. Читаем файл по абзацам <p class="abblock">...</p>
+          # Изменяем разделитель на </p>, чтобы обрабатывать карточки монолитно
+          cat temp.html | awk 'BEGIN{RS="</p>"} /class="exe"/{print $0 "</p>"}' | while read -r ab_block; do
             
-            echo "=== Обработка строки №${line_num} ==="
+            if [ -z "$ab_block" ] || [ "$ab_block" = "</p>" ]; then continue; fi
             
-            # Берем из файла сам блок вокруг этой строки (3 строки вверх, чтобы гарантированно поймать тег ссылки)
-            context_block=$(sed -n "$((line_num - 3)),${line_num}p" temp.html)
+            echo "=== Обработка блока карточки ==="
             
-            # Вытаскиваем чистый URL репозитория из этого контекста
-            repo_url=$(echo "$context_block" | grep -oP 'https://github.com[^/]+/[^/"]+' | head -n 1)
+            # Вытаскиваем чистый URL репозитория из ВСЕГО абзаца целиком
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[^/]+/[^/"]+' | head -n 1)
             
             if [ ! -z "$repo_url" ]; then
               # Очищаем путь до формата owner/repo для API
               repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2)
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
-              # Делаем ПРАВИЛЬНЫЙ запрос к официальному API GitHub
+              # Делаем запрос к официальному API GitHub
               DOWNLOAD_URL=$(curl -s "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
-              # Если реальный .exe файл в релизах найден, точечно заменяем заглушку на конкретной строке
+              # Если реальный .exe файл в релизах найден
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
                 echo "Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
+                
+                # Заменяем пустую метку exe конкретно для этой ссылки во временном файле
+                escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
                 escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
-                # Подменяем пустой тег именно на целевой строке файла
-                sed -i "${line_num}s|<span class=\"exe\"><\/span>|<span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp.html
+                # Меняем заглушку в файле temp.html, привязываясь к конкретному URL репозитория
+                sed -i -E "s|href=\"$escaped_url\"(.*)<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1<span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp.html
               else
                 echo "Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
               fi
             else
-              echo "Ошибка: Не удалось вытащить URL репозитория для строки ${line_num}"
+              echo "Ошибка: Не удалось найти URL репозитория в текущем HTML-абзаце"
+              echo "Содержимое проблемного блока: $ab_block"
             fi
             echo "-----------------------------------"
           done
@@ -201,6 +205,7 @@ jobs:
 
           # Удаляем временный файл
           rm temp.html
+
 
 
           # Запуск метода проверки видео для корня
