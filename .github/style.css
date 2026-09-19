@@ -8,7 +8,7 @@ body{margin:0;font-family: sans-serif; color:var(--pt);background:var(--bg)}
 hr {
 height: 0.1em;
 width: 560px;
-padding-top: 20px;
+margin-top: 20px;
 background-color: #353b41;
 border: 0;
 margin-left: 0; /* Прижимает линию к левому краю */
@@ -20,7 +20,7 @@ summary:hover{text-decoration:none;cursor:pointer;}
 
 .container-lg{max-width:1024px;margin:0 auto}
 .px-3{padding-left:16px;padding-right:16px}
-.my-5{margin-top:10vh;margin-bottom:32px}
+.my-5{margin-top:5vh;margin-bottom:32px}
 
 .markdown-body p{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; font-size:16px;letter-spacing: 0.2px;max-width: 870px;}
 .markdown-body h1{line-height:1.25;font-size:2em;font-weight: 600;
