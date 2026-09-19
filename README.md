@@ -8,7 +8,7 @@ Hey dudes. W\*lcome [2]
 </p><br clear="left"></div><br>
 
 \# Нужно было записать реальное перемещение мыши,<br>
-   ориентируясь на скриншоты<br>
+&nbsp;&nbsp;&nbsp;ориентируясь на скриншоты<br>
 [> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder)
 
 \# Нужно было пожать директиву текстур, словно я танос \*<br>
