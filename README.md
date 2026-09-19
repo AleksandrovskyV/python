@@ -8,7 +8,7 @@ Hey dudes. W\*lcome [2]
 </p><br clear="left"></div><br>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было записать реальное перемещение мыши,<br><span class="hubonly">&nbsp;&nbsp;</span>
+Нужно было записать реальное перемещение мыши,<span class="hubonly"><br>&nbsp;&nbsp;</span>
 ориентируясь на скриншоты
 </span><br><span class="linkline"><a class="repo"
    href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a> / <span class="exe"></span></span></p>
