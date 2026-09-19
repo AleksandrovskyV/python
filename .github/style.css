@@ -77,6 +77,7 @@ color:#888;
 text-decoration: underline;
 }
 p.workflowlink {
+    padding-top: 20px;
     color: #586069 !important;
 }
 
