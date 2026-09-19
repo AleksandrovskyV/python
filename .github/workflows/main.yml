@@ -159,20 +159,22 @@ jobs:
           # 1. Берем README.md, убираем hubonly и собираем базовый HTML во временный файл
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
-          # 2. Читаем файл по абзацам <p class="abblock">...</p>
-          # Изменяем разделитель на </p>, чтобы обрабатывать карточки монолитно
-          cat temp.html | awk 'BEGIN{RS="</p>"} /class="exe"/{print $0 "</p>"}' | while read -r ab_block; do
+          # Превращаем файл в одну сплошную строку, чтобы pandoc-переносы не ломали логику
+          cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
+
+          # 2. Ищем каждую карточку по тегу <p class="abblock">
+          cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} /class=\"exe\"/{print "<p class=\"abblock\">" $0}' | while read -r ab_block; do
             
-            if [ -z "$ab_block" ] || [ "$ab_block" = "</p>" ]; then continue; fi
+            if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
             
             echo "=== Обработка блока карточки ==="
             
-            # Вытаскиваем чистый URL репозитория из ВСЕГО абзаца целиком
-            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[^/]+/[^/"]+' | head -n 1)
+            # Вытаскиваем чистый URL репозитория из склеенного абзаца
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com/[^/]+/[^/ ">\r\n]+' | head -n 1)
             
             if [ ! -z "$repo_url" ]; then
               # Очищаем путь до формата owner/repo для API
-              repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2)
+              repo_path=$(echo "$repo_url" | sed 's|https://github.com/||' | cut -d'/' -f1,2)
               echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
               # Делаем запрос к официальному API GitHub
@@ -182,21 +184,24 @@ jobs:
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
                 echo "Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
                 
-                # Заменяем пустую метку exe конкретно для этой ссылки во временном файле
+                # Экранируем спецсимволы в урлах для безопасной работы внутри sed
                 escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
                 escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
-                # Меняем заглушку в файле temp.html, привязываясь к конкретному URL репозитория
-                sed -i -E "s|href=\"$escaped_url\"(.*)<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1<span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp.html
+                # Меняем заглушку в плоском файле, привязываясь к конкретному URL репозитория
+                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
               else
                 echo "Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
               fi
             else
               echo "Ошибка: Не удалось найти URL репозитория в текущем HTML-абзаце"
-              echo "Содержимое проблемного блока: $ab_block"
             fi
             echo "-----------------------------------"
           done
+
+          # Возвращаем плоскую строку обратно в temp.html для финальной обработки
+          cat temp_flat.html > temp.html
+          rm temp_flat.html
 
           # 3. Накатываем финальные правила для картинок, md-ссылок и h1
           cat temp.html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | \
