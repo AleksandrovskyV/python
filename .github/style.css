@@ -7,7 +7,7 @@ body{margin:0;font-family: sans-serif; color:var(--pt);background:var(--bg)}
 
 hr {
 height: 0.1em;
-width: 550px;
+width: 560px;
 background-color: #353b41;
 border: 0;
 margin-left: 0; /* Прижимает линию к левому краю */
