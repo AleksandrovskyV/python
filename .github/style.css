@@ -41,7 +41,7 @@ border-bottom:0;
 }
 .markdown-body h2 a{text-decoration:underline;color:var(--pt);display:block;font-size:0.54em;line-height:1.2;padding-top:.75em}
 
-.markdown-body a{color:#1370e7;font-size:1.3em;text-decoration:none;font-weight: bold;}.markdown-body a:hover{text-decoration:underline}
+.markdown-body a{color:#1370e7;text-decoration:none;}.markdown-body a:hover{text-decoration:underline}
 .markdown-body strong{font-weight: 600;}
 .markdown-body img{width: auto; height: auto; max-width: none;}
 .markdown-body blockquote{margin:0;padding-left:16px;border-left:4px solid #2f4051;color:#586069}
@@ -96,3 +96,10 @@ background-repeat:no-repeat;background-position:center;display:flex;align-items:
 .downico::before{content:"";display:inline-block;width:1em;height:0.8em;margin-right:0.1em;
 -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v10h4l-5 5-5-5h4V2zm-7 16h16v2H4v-2z'/%3E%3C/svg%3E") no-repeat center / contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v10h4l-5 5-5-5h4V2zm-7 16h16v2H4v-2z'/%3E%3C/svg%3E") no-repeat center / contain;background-color:currentColor;transform:translateY(-0.1em);
 }
+
+.abblock { display: block; margin-bottom: 16px; }
+.pyspawn { display: inline-block; vertical-align: top; width: 14px; }
+.abtext { display: inline-block; vertical-align: top; width: calc(100% - 18px); word-wrap: break-word; }
+.repo { margin-left: 14px; }
+.exe { display: inline-block; vertical-align: middle; }
+.linkline {font-weight: bold; font-size:1.3em;}

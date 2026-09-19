@@ -20,13 +20,13 @@ Hey dudes. W\*lcome [2]
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было записать реальное перемещение мыши,<br>
 ориентируясь на скриншоты
-</span><br><a class="repo" href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a> / <span class="exe"></span></p>
+</span><br><span class="linkline"><a class="repo" href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a> / <span class="exe"></span></span></p>
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было пожать директиву текстур, словно я танос *
-</span><br><a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a> / <span class="exe"></span></p>
+</span><br><span class="linkline"><a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a> / <span class="exe"></span></span></p>
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было глянуть все иконки sidefx houdini разом
-</span><br><a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <span class="exe"></span></p>
+</span><br><span class="linkline"><a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <span class="exe"></span></span></p>
 
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
