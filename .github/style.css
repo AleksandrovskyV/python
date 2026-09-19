@@ -14,7 +14,6 @@ border: 0;
 margin-left: 0; /* Прижимает линию к левому краю */
 }
 
-
 summary{text-decoration: underline;}
 summary:hover{text-decoration:none;cursor:pointer;}
 
@@ -59,7 +58,7 @@ line-height:1.25;
 .markdown-body li{max-width: 800px}
 
 .icoAbout{margin-top: 3vh;display:flex;align-items:flex-start;}
-.icoInfo{margin-top: 0.7vh;margin-left: 2vh;}
+.icoInfo{margin-top: 0.7vh;margin-left: 2vw;}
 .icoName{
 font-family: sans-serif;
 font-size: 2em !important;
@@ -75,7 +74,10 @@ font-weight: bold !important;
 .line {
 border-left: 2px solid #ccc; 
 height: 100px;
-margin-left: 1vh;
+margin-left: 1vw;
+}
+a.gFolder {
+color:#1370e7
 }
 a.ablink{
 color:var(--pt);
