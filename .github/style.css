@@ -99,7 +99,7 @@ background-repeat:no-repeat;background-position:center;display:flex;align-items:
 
 .abblock { display: block; margin-bottom: 16px; }
 .pyspawn { display: inline-block; vertical-align: top; width: 14px; }
-.abtext { display: inline-block; vertical-align: top; width: calc(100% - 18px); word-wrap: break-word; }
+.abtext { display: inline-block; vertical-align: top; width: calc(100% - 18px); word-wrap: break-word; max-width: 500px}
 .repo { margin-left: 14px; }
 .exe { display: inline-block; vertical-align: middle; }
 .linkline {font-weight: bold; font-size:1.3em;}
