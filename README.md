@@ -16,7 +16,7 @@ href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_rec
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было пожать директиву текстур, <span class="hubonly"><br>&nbsp;&nbsp;&nbsp;</span>словно я танос &#42;
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
-href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe">[.exe ]</span></span></p>
+href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было глянуть все иконки <span class="hubonly"><br>&nbsp;&nbsp;&nbsp;</span>sidefx houdini разом
