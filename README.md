@@ -20,7 +20,7 @@ Hey dudes. W\*lcome [2]
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было глянуть все <a class="ablink" href="https://www.mattchaput.org/icons">иконки</a> sidefx houdini разом,<br>
-перед тем как я споткнулся об <a class="ablink" href="https://houdini-icons.dev/">это</a>
+прежде чем я споткнулся об <a class="ablink" href="https://houdini-icons.dev/">это</a>
 </span><br><span class="linkline"><a class="repo" 
    href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> / <span class="exe"></span></span></p>
 
