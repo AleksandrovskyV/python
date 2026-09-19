@@ -19,7 +19,7 @@ summary:hover{text-decoration:none;cursor:pointer;}
 
 .container-lg{max-width:1024px;margin:0 auto}
 .px-3{padding-left:16px;padding-right:16px}
-.my-5{margin-top:64px;margin-bottom:32px}
+.my-5{margin-top:84px;margin-bottom:32px}
 
 .markdown-body p{font-family: "Segoe UI", sans-serif !important;  font-size:16px;letter-spacing: 0.2px;max-width: 870px;}
 .markdown-body p {
