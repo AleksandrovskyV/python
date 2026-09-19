@@ -44,7 +44,7 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было переименовать секвенцию A_[####] > B_[####]
 </span><br><span class="linkline"><a class="repo" 
-   href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">> > batch_renamer</a></span></p>
+   href="https://github.com/AleksandrovskyV/python/blob/main/utils/batch_renamer.py">> batch_renamer</a></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было добавить единый интерфейс запуска скриптов
