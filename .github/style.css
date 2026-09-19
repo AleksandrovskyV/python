@@ -60,7 +60,15 @@ summary:hover{text-decoration:none;cursor:pointer;}
 
 h2#cheker{color:grey}
 
-.btn-about{display:flex;align-items:flex-start;}
+.btn-about{
+    margin-top: 10vh;
+    display:flex;
+    align-items:flex-start;
+}
+.btn-info{
+    margin-top: 0.7vh;
+    margin-left: 2vh;
+}
 
 .cslink{ text-align: right; margin-right: 4px; }
 .cslink p{max-width: none !important}

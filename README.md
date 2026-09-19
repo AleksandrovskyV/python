@@ -2,7 +2,7 @@
 
 <div class="btn-about" >
 <img src="./assets/python.svg" width="84" align="left" style="padding-right: 12px;">
-<p style="margin-top: 12px ">
+<p class="btn-info">
 <strong class="mht" >Python Apps</strong><br>
 Hey dudes. W\*lcome [2]
 </p><br clear="left"></div><br>
@@ -24,7 +24,7 @@ Hey dudes. W\*lcome [2]
 
 <div class="btn-about" >
 <img src="./assets/cursor.svg" width="84" align="left" style="padding-right: 12px;">
-<p style="margin-top: 12px ">
+<p class="btn-info">
 <strong class="mht" >Python Utils</strong><br>
 Hey dudes. W\*lcome [3] > <a class="mhl" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
 </p><br clear="left"></div><br>
