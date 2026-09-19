@@ -38,6 +38,8 @@ Hey dudes. W\*lcome [3] > <a class="mhl" href="https://github.com/Aleksandrovsky
 \# Нужно было добавить единый интерфейс запуска скриптов<br>
 [> entry_run](https://github.com/AleksandrovskyV/python/blob/main/utils/entry_run.py)
 
+> В общем если скачать папку и запускать через entry_run.bat<br>
+> в windows будет интерфейс т.к. его обеспечит ./modules/tinker.py 
 
 <br>
 
