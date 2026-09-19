@@ -101,11 +101,12 @@ jobs:
 
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
 
+
           # 2. Search <p class="abblock">
           cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} /class=\"exe\"/{print "<p class=\"abblock\">" $0}' | while read -r ab_block; do
             
             if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
-            
+                        
             # ger URL from href link in <ab_block>
             repo_url=$(echo "$ab_block" | grep -oP 'https://github.com/[^/]+/[^/ ">\r\n]+' | head -n 1)
             
@@ -123,8 +124,9 @@ jobs:
                 escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
                 escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
-                # replace empty div <exe> 
-                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">.<a href=\"$escaped_dl\">exe</a><\/span>|g" temp_flat.html
+                # РЕГУЛЯРКА-КИЛЛЕР: находит ссылку, стирает любой мусорный разделитель перед спаном (хоть "/", хоть ">")
+                # и вставляет твой кастомный спан со стрелочкой и слитым .exe
+                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a><span> > <\/span><span class=\"exe\">.<a href=\"$escaped_dl\">exe</a><\/span>|g" temp_flat.html
               else
                 echo "Error: Empty release"
               fi
