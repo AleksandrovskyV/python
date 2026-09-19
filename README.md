@@ -33,7 +33,8 @@ Hey dudes. W\*lcome [2]
 <img src="./assets/cursor.svg" width="84" align="left">
 <p class="icoInfo">
 <strong class="icoName" >Python Utils</strong><br>
-Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
+Hey dudes. W\*lcome [3]<br>
+get <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main/utils">folder</a> or...
 </p><br clear="left"></div><br>
 
 
