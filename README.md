@@ -8,18 +8,18 @@ Hey dudes. W\*lcome [2]
 </p><br clear="left"></div><br>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было записать реальное перемещение мыши,<span class="hubonly"><br>&nbsp;&nbsp;</span>
+Нужно было записать реальное<span class="hubonly"><br></span>перемещение мыши,<span class="hubonly"><br>&nbsp;&nbsp;</span>
 ориентируясь на скриншоты
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
 href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_recorder</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было пожать директиву текстур, словно я танос &#42;
+Нужно было пожать директиву текстур, <span class="hubonly"><br></span>словно я танос &#42;
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
-href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
+href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe">[.exe ]</span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было глянуть все иконки sidefx houdini разом
+Нужно было глянуть все иконки <span class="hubonly"><br></span>sidefx houdini разом
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo" 
 href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> / <span class="exe"></span></span></p>
 
