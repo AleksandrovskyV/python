@@ -159,71 +159,69 @@ jobs:
           # 1. Берем README.md, убираем hubonly и собираем базовый HTML во временный файл
           sed -E 's|<span class="hubonly">.*?</span>||g' README.md | tr -d '\r' | pandoc -f markdown-yaml_metadata_block -t html > temp.html
 
-          # Превращаем файл в одну сплошную строку, чтобы переносы не ломали регулярные выражения
+          # Превращаем файл в одну сплошную строку, чтобы pandoc-переносы не ломали логику
           cat temp.html | tr '\n' ' ' | tr '\r' ' ' > temp_flat.html
 
-          # 2. Находим блоки, содержащие одновременно ссылку и пустую метку exe
-          echo "=== НАЧАЛО СЕТЕВОГО АНАЛИЗА РЕЛИЗОВ ==="
-          
-          # Нарезаем плоский файл на четкие строки по тегу карточки с помощью awk
-          cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} {print "<p class=\"abblock\">" $0}' | grep 'class="exe"' | while read -r ab_block; do
+          # 2. Ищем каждую карточку по тегу <p class="abblock">
+          cat temp_flat.html | awk 'BEGIN{RS="<p class=\"abblock\">"} /class=\"exe\"/{print "<p class=\"abblock\">" $0}' | while read -r ab_block; do
             
             if [ -z "$ab_block" ] || [ "$ab_block" = "<p class=\"abblock\">" ]; then continue; fi
             
+            echo ""
+            echo "=========================================================="
+            echo "=== Обработка блока карточки ==="
+            
             # Вытаскиваем чистый URL репозитория из склеенного абзаца
-            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com[[^/]]+/[[^/ ">\r\n]]+' | head -n 1)
+            repo_url=$(echo "$ab_block" | grep -oP 'https://github.com/[^/]+/[^/ ">\r\n]+' | head -n 1)
             
             if [ ! -z "$repo_url" ]; then
               # Очищаем путь до формата owner/repo для API
-              repo_path=$(echo "$repo_url" | sed 's|https://github.com||' | cut -d'/' -f1,2)
+              repo_path=$(echo "$repo_url" | sed 's|https://github.com/||' | cut -d'/' -f1,2)
+              echo "Найден репозиторий: $repo_url (Путь для API: $repo_path)"
               
-              echo ""
-              echo "=========================================================="
-              echo "🎯 ОБРАБОТКА РЕПОЗИТОРИЯ: $repo_url"
-              echo "ℹ️ Путь для запроса к API: $repo_path"
-              echo "--------------------------------------------------------=="
-              
-              # Делаем АВТОРИЗОВАННЫЙ запрос к API GitHub и сохраняем сырой ответ во временную переменную
+              # Делаем АВТОРИЗОВАННЫЙ запрос к официальному API GitHub и сохраняем сырой ответ
               API_RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://github.com{repo_path}/releases/latest")
               
-              echo "📝 СЫРОЙ ОТВЕТ СЕРВЕРА GITHUB API (первые 500 символов):"
-              echo "$API_RESPONSE" | head -c 500
-              echo -e "\n--------------------------------------------------------=="
+              echo "📝 СЫРОЙ ОТВЕТ СЕРВЕРА GITHUB API (первые 400 символов):"
+              echo "$API_RESPONSE" | head -c 400
+              echo -e "\n--------------------------------------------------------"
               
               # Вытаскиваем точный URL .exe файла через jq
-              DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[[ ]]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
+              DOWNLOAD_URL=$(echo "$API_RESPONSE" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
+              # Если реальный .exe файл в релизах найден
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
-                echo "✅ УСПЕХ! Найден файл: \$(basename \$DOWNLOAD_URL)"
-                echo "🔗 Прямая ссылка: $DOWNLOAD_URL"
+                echo "✅ Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
                 
                 # Экранируем спецсимволы в урлах для безопасной работы внутри sed
-                escaped_url=$(echo "$repo_url" | sed 's/[[&/]]/\\&/g')
-                escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[[&/]]/\\&/g')
+                escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
+                escaped_dl=$(echo "$DOWNLOAD_URL" | sed 's/[&/]/\\&/g')
                 
-                # Точечно заменяем заглушку exe в плоском файле для этой конкретной ссылки
-                sed -i -E "s|href=\"$escaped_url\"([[^>]]*>)([[^<]]*)</a>([[^<]]*)/([[^<]]*)<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
+                # Меняем заглушку в плоском файле, привязываясь к конкретному URL репозитория
+                sed -i -E "s|href=\"$escaped_url\"([^>]*>)([^<]*)</a>[^<]*/[^<]*<span class=\"exe\"><\/span>|href=\"$escaped_url\"\1\2</a> / <span class=\"exe\">[\&nbsp;<a href=\"$escaped_dl\">exe</a>\&nbsp;]<\/span>|g" temp_flat.html
               else
-                echo "❌ ОШИБКА: .exe файл в релизах для $repo_path не обнаружен."
-                echo "🔍 Проверка ассетов в ответе:"
-                echo "$API_RESPONSE" | jq -r '.assets[[ ]]? | .name' 2>/dev/null || echo "Ассеты отсутствуют (возможно, нет релизов или ошибка доступа 403/404)"
+                echo "❌ Предупреждение: Ссылка на .exe в релизах для $repo_path НЕ НАЙДЕНА (или релиз пуст)"
+                echo "🔍 Доступные файлы в этом релизе:"
+                echo "$API_RESPONSE" | jq -r '.assets[]? | .name' 2>/dev/null || echo "Ассеты полностью отсутствуют в JSON"
               fi
-              echo "=========================================================="
+            else
+              echo "Ошибка: Не удалось найти URL репозитория в текущем HTML-абзаце"
             fi
+            echo "=========================================================="
           done
-
 
           # Возвращаем плоскую строку обратно в temp.html для финальной обработки
           cat temp_flat.html > temp.html
           rm temp_flat.html
 
-          # 3. Накатываем твои стандартные финальные правила для картинок, md-ссылок и h1
+          # 3. Накатываем финальные правила для картинок, md-ссылок и h1
           cat temp.html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | \
           sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="btnico \3"\4><div class="line"><\/div>|g' | \
           sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
 
-          # # Удаляем временный файл
+          # Удаляем временный файл
           rm temp.html
+
 
 
           # Запуск метода проверки видео для корня
