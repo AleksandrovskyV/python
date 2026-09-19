@@ -74,7 +74,7 @@ font-weight: bold !important;
 .line {
 border-left: 2px solid #ccc; 
 height: 100px;
-margin-left: 0.5vw;
+margin-left: 1vw;
 }
 a.gFolder {
 color:#1370e7
