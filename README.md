@@ -8,13 +8,12 @@ Hey dudes. W\*lcome [2]
 </p><br clear="left"></div><br>
 
 <p>
-
 \# Нужно было записать реальное перемещение мыши,<br>
 &nbsp;&nbsp;&nbsp;ориентируясь на скриншоты<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a> / <div class="exe"></div>
-
+<a class="repo" href="https://github.com/AleksandrovskyV/mouse_states_recorder">> mouse_states_recorder</a> / <div class="exe"></div></p>
+<p>
 \# Нужно было пожать директиву текстур, словно я танос \*<br>
-<a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a> / <div class="exe"></div>
+<a class="repo" href="https://github.com/AleksandrovskyV/vram_crunch">> vram_folder_crunch</a> / <div class="exe"></div></p>
 
 \# Нужно было глянуть все иконки sidefx houdini разом<br>
 <a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <div class="exe"></div>
