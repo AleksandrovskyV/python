@@ -22,7 +22,7 @@ summary:hover{text-decoration:none;cursor:pointer;}
 .px-3{padding-left:16px;padding-right:16px}
 .my-5{margin-top:6vh;margin-bottom:32px}
 
-.markdown-body p{font-family: "Avenir Next Condensed", -apple-system, "Segoe UI", sans-serif !important;  font-size:16px;letter-spacing: 0.2px;max-width: 870px;}
+.markdown-body p{font-family: -apple-system, "Segoe UI", sans-serif !important;  font-size:16px;letter-spacing: 0.2px;max-width: 870px;}
 .markdown-body h1{line-height:1.25;font-size:2em;font-weight: 600;
 padding-bottom: 0.3em;margin-top: 24px;margin-bottom: 16px;
 border-bottom: 1px solid #eaecef;}
