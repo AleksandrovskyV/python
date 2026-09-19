@@ -16,7 +16,6 @@ Hey dudes. W\*lcome [2]
 
 \# Нужно было глянуть все иконки sidefx houdini разом<br>
 <a class="repo" href="https://github.com/AleksandrovskyV/svg_viewer">> svg_viewer</a> / <div class="exe"></div>
-
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
 
