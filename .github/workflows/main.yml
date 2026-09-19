@@ -157,7 +157,7 @@ jobs:
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
 
           # СТАЛО (в одну строку, без переносов, со вставкой линии):
-          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -e ':a' -e 'N' -e '$!ba' -e 's|<span class="hubonly">[^<]*\(<br>\)*[^<]*</span>||g' | sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="btnico \3"\4><div class="line"><\/div>|g' | sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<span class="hubonly">[^<]*(<br>)*[^<]*</span>||g' | sed -E 's|<img([^>]+)src="([^"]*/)?([^/"]+)\.svg"([^>]*)>|<img\1src="\2\3.svg" class="btnico \3"\4><div class="line"><\/div>|g' | sed -E 's|<h1 id="([^"]+)">([^<]+)</h1>|<h1 id="\1">user\/\2</h1>|g' > root_base.html
 
           # Запуск метода проверки видео для корня
           process_html_videos "root_base.html" "root_final.html"
