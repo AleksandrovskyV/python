@@ -10,7 +10,14 @@ height: 0.1em;
 width: 400px;
 background-color: #353b41;
 border: 0;
+margin-left: 0; /* Прижимает линию к левому краю */
 }
+
+
+.workflowlink a {
+text-decoration: underline;
+}
+
 summary{text-decoration: underline;}
 summary:hover{text-decoration:none;cursor:pointer;}
 
