@@ -176,6 +176,8 @@ jobs:
               # Делаем запрос к официальному API GitHub
               DOWNLOAD_URL=$(curl -s "https://github.com{repo_path}/releases/latest" | jq -r '.assets[]? | select(.name | endswith(".exe")) | .browser_download_url' | head -n 1)
               
+              echo "URL: $DOWNLOAD_URL"
+
               if [ ! -z "$DOWNLOAD_URL" ] && [ "$DOWNLOAD_URL" != "null" ] && [ "$DOWNLOAD_URL" != "" ]; then
                 echo "Успех! Найдена прямая ссылка на .exe: $DOWNLOAD_URL"
                 escaped_url=$(echo "$repo_url" | sed 's/[&/]/\\&/g')
