@@ -17,6 +17,10 @@ margin-left: 0; /* Прижимает линию к левому краю */
 .workflowlink a {
 text-decoration: underline;
 }
+.workflowlink p {
+color:#586069;
+}
+
 
 summary{text-decoration: underline;}
 summary:hover{text-decoration:none;cursor:pointer;}
