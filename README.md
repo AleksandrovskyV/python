@@ -10,7 +10,7 @@ Hey dudes. W\*lcome [2]
 \# Нужно было записать реальное перемещение мыши, ориентируясь на скриншоты<br>
 [> mouse_states_recorder](https://github.com/AleksandrovskyV/mouse_states_recorder)
 
-\# Нужно было пожать директиву текстур, словно я танос *
+\# Нужно было пожать директиву текстур, словно я танос \*<br>
 [> vram_folder_crunch](https://github.com/AleksandrovskyV/vram_crunch)
 
 \# Нужно было глянуть все иконки sidefx houdini разом<br>
