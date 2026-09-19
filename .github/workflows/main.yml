@@ -86,9 +86,7 @@ jobs:
           EOF
 
           # paste styles.css
-          echo '<style>' >> index.html
-          cat ./.github/style.css >> index.html
-          echo '</style>' >> index.html          
+          echo '<link rel="stylesheet" href="./.github/style.css">' >> index.html     
 
           # close <head> and create body content block
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
