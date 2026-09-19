@@ -19,7 +19,7 @@ Hey dudes. W\*lcome [2]
    href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было глянуть все <a class="ablink" style="text-decoration: underline;" href="https://github.com/">иконки</a> sidefx houdini разом
+Нужно было глянуть все <a class="ablink" href="https://github.com/">иконки</a> sidefx houdini разом
 </span><br><span class="linkline"><a class="repo" 
    href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> / <span class="exe"></span></span></p>
 
