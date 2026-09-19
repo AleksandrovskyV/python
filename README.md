@@ -25,8 +25,8 @@ Hey dudes. W\*lcome [2]
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...
-
-> потом закинули <a class="ablink" href="https://houdini-icons.dev/">это</a>
+>
+> потом подкинули <a class="ablink" href="https://houdini-icons.dev/">это</a>
 
 <br><br>
 
