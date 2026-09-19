@@ -14,7 +14,7 @@ Hey dudes. W\*lcome [2]
 href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_recorder</a> / <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Нужно было пожать директиву текстур, словно я танос *
+Нужно было пожать директиву текстур, словно я танос &#42;
 </span><br><span class="linkline"><span class="hubonly">&nbsp;&nbsp;&nbsp;</span><a class="repo"
 href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
 
