@@ -54,6 +54,4 @@ Hey dudes. W\*lcome [3] > <a class="gFolder" href="https://github.com/Aleksandro
 > В общем если скачать папку и запускать через <span style="color: #888;">entry_run.bat</span><span class="hubonly"><br></span>
 > в <span style="color: #888;">windows</span> будет интерфейс т.к. его обеспечит ./modules/tinker.py 
 
-<br><br>
-
 <div class="workflowlink"></div>
