@@ -11,18 +11,18 @@ Hey dudes. W\*lcome [2]
 Нужно было записать реальное перемещение мыши,<span class="hubonly"><br></span>
 ориентируясь на скриншоты
 </span><br><span class="linkline"><a class="repo"
-   href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_recorder</a> / <span class="exe"></span></span></p>
+   href="https://github.com/AleksandrovskyV/mouse_states_recorder">mouse_states_recorder</a> > <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было пожать директиву текстур, словно я танос &#42;
 </span><br><span class="linkline"><a class="repo"
-   href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> / <span class="exe"></span></span></p>
+   href="https://github.com/AleksandrovskyV/vram_crunch">vram_folder_crunch</a> > <span class="exe"></span></span></p>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
 Нужно было глянуть все <a class="ablink" href="https://www.mattchaput.org/icons">иконки</a> sidefx разом,<br>
-прежде чем я споткнулся об <a class="ablink" href="https://houdini-icons.dev/">это</a>
+<span class="dewidthmob">прежде чем я споткнулся об </span><a class="ablink" href="https://houdini-icons.dev/">это</a>
 </span><br><span class="linkline"><a class="repo" 
-   href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> / <span class="exe"></span></span></p>
+   href="https://github.com/AleksandrovskyV/svg_viewer">svg_viewer</a> > <span class="exe"></span></span></p>
 
 > Тут осенение, что qt\\tinker можно заменить сервером отдающим html,<br>
 > а вслед осознание, как быстро забудешь эти хитросплетения из макарон...

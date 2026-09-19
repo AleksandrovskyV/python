@@ -27,9 +27,7 @@ summary:hover{text-decoration:none;cursor:pointer;}
     font-size: 16px;
     max-width: 870px;
 }
-:-webkit-full-screen-document, .markdown-body p {
-    font-family: "Myriad Set Pro", "Myriad Pro", sans-serif !important;
-}
+
 .markdown-body h1{line-height:1.25;font-size:2em;font-weight: 600;
 padding-bottom: 0.3em;margin-top: 24px;margin-bottom: 16px;
 border-bottom: 1px solid #eaecef;}
@@ -112,4 +110,5 @@ color: var(--bg);
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .my-5{margin-top:24px;}
+    .dewidthmob{letter-spacing: -0.15px !important; }
 }
