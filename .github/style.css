@@ -14,14 +14,6 @@ margin-left: 0; /* Прижимает линию к левому краю */
 }
 
 
-.workflowlink a {
-text-decoration: underline;
-}
-.workflowlink p {
-color:#586069;
-}
-
-
 summary{text-decoration: underline;}
 summary:hover{text-decoration:none;cursor:pointer;}
 
@@ -78,6 +70,14 @@ margin-left: 1vh;
 }
 .svgico{margin-bottom:8px;margin-right:12px;float:left; width: 84px !important; min-width:84px;aspect-ratio: 1 / 1;
 background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;}
+
+.workflowlink a {
+color:#586069;
+text-decoration: underline;
+}
+.workflowlink p {
+color:#586069;
+}
 
 
 /* width fix Web = 95% Mobile = 100% */
