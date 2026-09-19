@@ -36,8 +36,8 @@ jobs:
           filters: |
             site_changed:
               - '.github/**'
-              - 'assets/**/*.svg'
               - 'README.md'
+#              - 'assets/**/*.svg'
 
       - name: Setup Pages
         if: steps.site-check.outputs.site_changed == 'true'
