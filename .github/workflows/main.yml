@@ -36,6 +36,7 @@ jobs:
           filters: |
             site_changed:
               - '.github/**'
+              - 'assets/**/*.svg'
               - 'README.md'
 
       - name: Setup Pages
