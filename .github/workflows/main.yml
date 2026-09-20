@@ -85,12 +85,12 @@ jobs:
               <script>{let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}}</script>
           EOF
 
-          # paste styles.css
+          # hard paste styles.css in html
           #echo '<style>' >> index.html
-          #cat ./.github/style.css >> index.html
-          #echo '</style>' >> index.html          
-        
+          #cat ./assets/style.css >> index.html
+          #echo '</style>' >> index.html        
           
+          # softlink styles.css in html
           echo '<link rel="stylesheet" href="./assets/style.css">' >> index.html
 
           # close <head> and create body content block
