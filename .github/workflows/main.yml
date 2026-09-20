@@ -90,8 +90,10 @@ jobs:
           #cat ./.github/style.css >> index.html
           #echo '</style>' >> index.html          
         
-          echo "<link rel=\"stylesheet\" href=\"https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/.github/style.css\">" >> index.html
-
+          #echo "<link rel=\"stylesheet\" href=\"https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/.github/style.css\">" >> index.html
+          
+          cp .github/style.css ./style.css
+          echo '<link rel="stylesheet" href="style.css">' >> index.html
 
           # close <head> and create body content block
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
