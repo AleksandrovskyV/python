@@ -56,4 +56,23 @@ get <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main
 > В общем если скачать папку и запускать через <span style="color: #888;">entry_run.bat</span><span class="hubonly"><br></span>
 > в <span style="color: #888;">windows</span> будет интерфейс т.к. его обеспечит ./modules/tinker.py 
 
+<br><br><br>
+
+<div class="icoAbout" >
+<img src="./assets/cursor.svg" width="84" align="left">
+<p class="icoInfo">
+<strong class="icoName" >Python Prototype</strong><br>
+Hey dudes. W\*lcome [3]<br>
+get <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main/utils/prototype">folder</a> or...
+</p><br clear="left"></div><br>
+
+> В папке - прототипы, до интеграции интерфейса</span><span class="hubonly"><br></span>
+> А ниже, скрипты без интерфейса</span><span class="hubonly"><br></span>
+
+<p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
+Вычленение из wiki списка станций и поиск OSM Id через overpass 
+</span><br><span class="linkline"><a class="repo" 
+   href="https://github.com/AleksandrovskyV/python/blob/main/utils/prototype/db_wiki_subway.py">db_wiki_subway.py</a></span></p>
+<br><br><br>
+
 <div class="workflowlink"></div>
