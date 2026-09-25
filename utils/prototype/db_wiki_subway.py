@@ -11,7 +11,7 @@ import overpass
 #
 # export json and optional csv\html
 
-TARGET_CITY = "spb"
+TARGET_CITY = "kazan"
 
 DB_NAME = "db_wiki_subway"
 FILENAME = f"{DB_NAME}_{TARGET_CITY}"
