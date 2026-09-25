@@ -61,16 +61,14 @@ get <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main
 <div class="icoAbout" >
 <img src="./assets/cursor.svg" width="84" align="left">
 <p class="icoInfo">
-<strong class="icoName" >Python Prototype</strong><br>
+<strong class="icoName" >Python Scripts</strong><br>
 Hey dudes. W\*lcome [3]<br>
 get <a class="gFolder" href="https://github.com/AleksandrovskyV/python/tree/main/utils/prototype">folder</a> or...
 </p><br clear="left"></div><br>
 
-> В папке - прототипы, до интеграции интерфейса</span><span class="hubonly"><br></span>
-> А ниже, скрипты без интерфейса</span><span class="hubonly"><br></span>
 
 <p class="abblock"><b class="pyspawn">&#35;</b><span class="abtext">
-Вычленение из wiki списка станций и поиск OSM Id через overpass 
+Вычленение из <a class="ablink" href="https://ru.wikipedia.org/wiki/Список_станций_Казанского_метрополитена">вики</a> списка и <a class="ablink" href="https://maps.mail.ru/osm/tools/overpass/">поиск</a> OSM ID через <a class="ablink" href="https://pypi.org/project/overpass/">overpass</a> 
 </span><br><span class="linkline"><a class="repo" 
    href="https://github.com/AleksandrovskyV/python/blob/main/utils/prototype/db_wiki_subway.py">db_wiki_subway.py</a></span></p>
 <br><br><br>
